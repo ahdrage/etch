@@ -1,3 +1,26 @@
-.body {
-    background-color: blueviolet;
+body {
+  background-color: pink;
+  padding: 30px 25%;
+  text-align: center;
+  margin: 0px; 
 }
+
+.container {
+  margin: 0 auto;
+  width: min(100vh, 100vw);
+  height: min(100vh, 100vw);
+  display: grid; 
+}
+
+.container div {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  border: solid 1px black;
+}
+
+.allCells {
+  background-color: white;
+}
+
+
