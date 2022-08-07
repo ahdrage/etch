@@ -1,35 +1,55 @@
-
-// This function sets number of grid columns based on input from user and then creates corresponding divs
-(function () {
+// Gets number of squares from user input and then creates columns and corresponding divs
+function returnText() {
+    let input = document.getElementById("userInput").value; 
+    let squareRootInput = Math.sqrt(input); 
     
-    const input = prompt("How mant rows and columns do you want?"); 
+
+    
     document.querySelector('.container').style
-    .setProperty('grid-template-columns', `repeat(${input}, 1fr)`); // Setting number of grid columns based on user input
-  
-    var fragment = document.createDocumentFragment();
+    .setProperty('grid-template-columns', `repeat(${squareRootInput}, 1fr)`); // Setting number of grid columns based on user input
+      
+        let fragment = document.createDocumentFragment();
+        
+        let gridContainer = document.querySelector('.container');
     
-    var gridContainer = document.querySelector('.container');
-
-    // Creating all divs based on user input
-    for(var i = 0; i < input; i++) { 
-        for(var j = 0; j < input; j++) {
-            div = document.createElement("div"); 
-            div.className = "allCells"; 
-            fragment.appendChild(div);
+        // Creating all divs based on user input
+        for(let i = 0; i < squareRootInput; i++) { 
+            for(let j = 0; j < squareRootInput; j++) {
+                div = document.createElement("div"); 
+                div.className = "allCells"; 
+                fragment.appendChild(div);
+            }
         }
+    
+        gridContainer.appendChild(fragment); 
+    
+    
+    
+    
+    let allCellsArray = document.querySelectorAll(".allCells"); 
+    
+    // Changing background color of divs randomly when mouse over
+    for (let i = 0; i < allCellsArray.length; i++) {
+        let randomColorGenerator = Math.floor(Math.random()*16777215).toString(16);   
+        let randomColor = "#" + randomColorGenerator; 
+        allCellsArray[i].addEventListener("mouseover", function() {
+            this.style.backgroundColor = randomColor;
+    }); 
+    }
+     
+}
+
+function reset() {
+    let resetGame = document.querySelector(".container"); 
+    resetGame.remove(); 
+
+    let resetInput = document.querySelector("#userInput"); 
+    resetInput.value = ""; 
+
     }
 
-    gridContainer.appendChild(fragment); 
-
-})();
 
 
-let allCellsArray = document.querySelectorAll(".allCells"); 
 
-// Changing background of divs when mouse over
-for (var i = 0; i < allCellsArray.length; i++) {
-    allCellsArray[i].addEventListener("mouseover", function() {
-        this.style.backgroundColor = "green";
-}); 
-}
+
 
